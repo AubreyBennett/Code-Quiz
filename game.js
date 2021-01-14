@@ -69,15 +69,14 @@ startGame = () => {
             choice4: "alt-c",
             correctAnswer: 2
         }];
-        console.log(availableQuesions);
         getNewQuestion();
     }; 
 
     getNewQuestion = () => {
 
-        if (availableQuesions.length === 0 || questionCounter > max_quesions) {
-            return window.location.assign(*/end.html);
-        }
+        // if (availableQuesions.length === 0 || questionCounter > max_quesions) {
+        //     return window.location.assign(*/end.html);
+        // }
 // why are my quesions not showing up???????????????
         questionCounter++;
         const questionIndex = Math.floor(Math.random() * availableQuesions.length);
@@ -89,8 +88,7 @@ startGame = () => {
             choice.innerText = currentQuestion["choice" + number];
         });
 
-        availableQuesions.splice(questionsIndex, 1);
-        console.log(availableQuesions);
+        availableQuesions.splice(questionIndex, 1);
         acceptingAnsers = true;
     };
 
@@ -100,7 +98,7 @@ startGame = () => {
             acceptingAnswers = false;
             const selectedChoice = e.target;
             const selectedAnswer = selectedChoice.dataset['number'];
-            console.log(selectedAnswer);
+            console.log(selectedAnswer === currentQuestion.correctAnswer);
             getNewQuestion();
         });
     })
