@@ -1,5 +1,7 @@
 const question = document.getElementById("question");
 const choices = Array.from(document.getElementsByClassName("choice-text"));
+const progressText = document.getElementById('progressText');
+const score = document.getElementById('score');
 
 let currentQuestion = {};
 let acceptingAnswers = true;
@@ -79,6 +81,8 @@ startGame = () => {
         // }
 // why are my quesions not showing up???????????????
         questionCounter++;
+        progressText.innerText = $(questionCounter)/$(max_quesions);
+
         const questionIndex = Math.floor(Math.random() * availableQuesions.length);
         currentQuestion = availableQuesions[questionIndex];
         question.innerText = currentQuestion.question;
@@ -98,9 +102,26 @@ startGame = () => {
             acceptingAnswers = false;
             const selectedChoice = e.target;
             const selectedAnswer = selectedChoice.dataset['number'];
-            console.log(selectedAnswer === currentQuestion.correctAnswer);
-            getNewQuestion();
+            
+            const classToApply = 'incorrect';
+                if (selectedAnswer == currentQuestion.correctAnswer) {
+                    classToApply = 'correct';
+                }
+                if (classToApply === 'correct') {
+                    incrementScore(correct_bonus);
+                }
+
+            selectedChoice.parentElement.classList.add(classToApply);
+            setTimeout(() => {
+                selectedChoice.parentElement.classList.remove(classToApply);
+                getNewQuestion();
+            }, 1000);
         });
-    })
+    });
+
+    incrementScore = num => {
+        score +=num;
+        scoreText.innerText = score;
+    }
 
     startGame();

@@ -54,16 +54,16 @@ body {
 
 #progressBar {
     width: 20rem;
-    height: 3rem;
-    border: 0.2rem solid lightgreen;
+    height: 4rem;
+    border: 0.2rem solid blue;
     margin-top: 2rem;
     border-radius: 50px;
     overflow: hidden;
 }
 
 #progressBarFull {
-    height: 100%;
-    background: lightgreen;
+    height: 3.4rem;
+    background: blue;
     width: 0%;
 }
 
